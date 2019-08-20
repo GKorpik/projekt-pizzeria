@@ -221,7 +221,7 @@
 
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
-
+      thisWidget.initActions(set);
 
       console.log('AmountWidget', thisWidget);
       console.log('constructor arguments', element);
@@ -229,6 +229,7 @@
 
     getElements(element){
       const thisWidget = this;
+
 
       thisWidget.element = element;
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
@@ -256,7 +257,6 @@
         event.preventDefault();
         thisWidget.setValue(thisWidget.value - 1);
       });
-  
   
       thisWidget.linkIncrease.addEventListener('click', function(event){
         event.preventDefault();
