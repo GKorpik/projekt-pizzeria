@@ -161,6 +161,8 @@
     addToCart(){
       const thisProduct = this;
 
+      thisProduct.name = thisProduct.data.name;
+      thisProduct.amount = thisProduct.amountWidget.value;
       app.cart.add(thisProduct);
     }
 
@@ -243,7 +245,7 @@
               option: {},
             };
           }
-          thisProduct.params[paramId].options[optionId] = option.label;
+          thisProduct.params[paramId].option[optionId] = option.label;
           
           const integratedClass = '.' + paramId + '-' + optionId;
           console.log('class', integratedClass);
@@ -347,7 +349,21 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
+      thisCart.add();
       console.log('new Cart', thisCart);
+    }
+
+
+    
+    getElements(element){
+      const thisCart = this;
+
+      thisCart.dom = {};
+
+      thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList)
+      console.log('domCart', thisCart.dom.productList);
     }
 
     initActions(){
@@ -357,20 +373,24 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
-    
-    getElements(element){
-      const thisCart = this;
-
-      thisCart.dom = {};
-
-      thisCart.dom.wrapper = element;
-      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-    }
 
     add(menuProduct){
-      //const thisCart = this;
+      const thisCart = this;
 
       console.log('adding product', menuProduct);
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+      console.log('generatedHTML', generatedHTML);
+      
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      console.log('generatedDOM', generatedDOM);
+      
+      const cartContainer = document.querySelector(select.cart.productList);
+      console.log('cartContainer', cartContainer);
+      
+      cartContainer.appendChild(generatedDOM);
+
+      
     }
 
   }
