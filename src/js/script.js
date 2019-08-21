@@ -92,6 +92,8 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
+
+
     
       console.log('new Product', thisProduct);
     }
@@ -156,6 +158,12 @@
       });
     }
 
+    addToCart(){
+      const thisProduct = this;
+
+      app.cart.add(thisProduct);
+    }
+
     initOrderForm(){
       const thisProduct = this;
       thisProduct.form.addEventListener('submit', function(event){
@@ -172,6 +180,7 @@
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
@@ -193,6 +202,9 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       
       /* set variable price to equal thisProduct.data.price */
+      
+      thisProduct.params = {};
+
       let price = thisProduct.data.price;
       console.log('!price', price);
 
@@ -225,6 +237,14 @@
             price -= option.price;
           }
 
+          if(!thisProduct.params[paramId]){
+            thisProduct.params[paramId] = {
+              label: param.label,
+              option: {},
+            };
+          }
+          thisProduct.params[paramId].options[optionId] = option.label;
+          
           const integratedClass = '.' + paramId + '-' + optionId;
           console.log('class', integratedClass);
 
@@ -240,9 +260,13 @@
           }
         }
       }
+      
+      /* multiply price by amount */
+      thisProduct.priceSingle = price;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
-      price *= thisProduct.amountWidget.value;
-      thisProduct.priceElem.innerText = price; 
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
+      thisProduct.priceElem.innerHTML = thisProduct.price; 
     }
   }
 
@@ -342,6 +366,13 @@
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     }
+
+    add(menuProduct){
+      //const thisCart = this;
+
+      console.log('adding product', menuProduct);
+    }
+
   }
 
 
