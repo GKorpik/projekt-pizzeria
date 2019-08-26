@@ -242,10 +242,10 @@
           if(!thisProduct.params[paramId]){
             thisProduct.params[paramId] = {
               label: param.label,
-              option: {},
+              options: {},
             };
           }
-          thisProduct.params[paramId].option[optionId] = option.label;
+          thisProduct.params[paramId].options[optionId] = option.label;
           
           const integratedClass = '.' + paramId + '-' + optionId;
           console.log('class', integratedClass);
@@ -349,7 +349,7 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.add();
+      //thisCart.add(menuProduct);
       console.log('new Cart', thisCart);
     }
 
