@@ -396,7 +396,7 @@
       const index = thisCart.products.indexOf('cartProduct');
       console.log('index', thisCart.index);
     
-      const removeIndex = thisCart.products.splice(index);
+      thisCart.products.splice(index);
 
       cartProduct.dom.wrapper.remove();
 
