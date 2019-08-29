@@ -25,8 +25,8 @@ export class Cart{
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-    thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone.value);
-    thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address.value);
+    thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+    thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
 
@@ -63,8 +63,8 @@ export class Cart{
     const url = settings.db.url + '/' + settings.db.order;
 
     const payload = {
-      address: thisCart.dom.address,
-      phone: thisCart.dom.phone,
+      address: thisCart.dom.address.value,
+      phone: thisCart.dom.phone.value,
       totalPrice: thisCart.totalPrice,
       totalNumber: thisCart.totalNumber,
       subtotalPrice: thisCart.subtotalPrice,
