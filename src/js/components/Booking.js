@@ -4,16 +4,16 @@ import {AmountWidget} from './AmountWidget.js';
 
 
 export class Booking{
-  constructor(){
+  constructor(render(booking)){
     const thisBooking = this;
     
-    thisBooking.render();
+    thisBooking.render(booking);
     thisBooking.initWidgets();
   }
 
   render(){
-    const thisBooking = this;	
-		
+    const thisBooking = this; 
+    
     const generatedHTML = templates.bookingWidget();
     const generatedDOM  = utils.createDOMFromHTML(generatedHTML);
     const bookingContainer = document.querySelector(select.containerOf.booking);
@@ -29,7 +29,7 @@ export class Booking{
   }
 
   initWidgets(){
-		
+    
     const thisBooking = this;
 
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
