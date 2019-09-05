@@ -1,5 +1,6 @@
 import {Product} from './components/Product.js';
 import {Cart} from './components/Cart.js';
+import {Booking} from './components/Booking.js';
 import {select, settings, classNames, templates} from './settings.js';
 
 const app = {
@@ -33,6 +34,63 @@ const app = {
     }
   },
 
+  initPages: function(){
+
+    const thisApp = this;
+    
+    thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children); 
+
+    thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
+
+    let pagesMatchingHash = [];
+
+    if(window.location.hash.length > 2){
+      const idFromHash = window.location.hash.replace('#/', '');
+
+      pagesMatchingHash = thisApp.pages.filter(function(page){
+        return page.id == idFromHash;
+      });
+    }
+
+    for(let link of thisApp.navLinks){
+      link.addEventListener('click', function(event){
+        const clickedElement = this;
+        event.preventDefault();
+
+        const id = clickedElement.getAttribute('href');
+        console.log('id', id);
+        const idReplace = id.replace('#', '');
+        
+        console.log('id', idReplace);
+        thisApp.activatePage(idReplace);
+
+      });
+    }
+  },
+
+  activatePage: function(pageId){
+    const thisApp = this;
+
+    for (let link of thisApp.navLinks){
+      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+      console.log('link', link);
+    }
+
+    for (let page of thisApp.pages){
+      page.classList.toggle(classNames.nav.active, page.getAttribute('id') == pageId);
+      console.log('page', page);
+    }
+
+    window.location.hash = '#/' + pageId;
+  },
+
+  initBooking: function(){
+    const thisApp = this;
+    
+    thisApp.containerWidget = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(thisApp.containerWidget);
+  },
+
   init: function() {
     const thisApp = this;
     console.log('*** App starting ***');
@@ -41,8 +99,11 @@ const app = {
     console.log('settings:', settings);
     console.log('templates:', templates);
 
+    thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
+
   },
 
   initCart: function(){
