@@ -117,10 +117,9 @@ const app = {
   },
 
   initBooking: function(){
-    const thisApp = this;
     
-    thisApp.containerWidget = document.querySelector(select.containerOf.booking);
-    const booking = new Booking(thisBooking.render.thisApp.containerWidget);
+    const widget = document.querySelector(select.containerOf.booking);
+    new Booking(widget);
   },
 };
 

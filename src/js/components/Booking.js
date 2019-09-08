@@ -4,10 +4,10 @@ import {AmountWidget} from './AmountWidget.js';
 
 
 export class Booking{
-  constructor(render(booking)){
+  constructor(widget){
     const thisBooking = this;
     
-    thisBooking.render(booking);
+    thisBooking.render(widget);
     thisBooking.initWidgets();
   }
 
@@ -16,15 +16,14 @@ export class Booking{
     
     const generatedHTML = templates.bookingWidget();
     const generatedDOM  = utils.createDOMFromHTML(generatedHTML);
-    const bookingContainer = document.querySelector(select.containerOf.booking);
 
     thisBooking.dom = {};
     thisBooking.dom.wrapper = document.querySelector(select.containerOf.booking);
 
-    bookingContainer.appendChild(generatedDOM);
+    thisBooking.dom.wrapper.appendChild(generatedDOM);
 
-    thisBooking.dom.peopleAmount = thisBooking.element.querySelector(select.booking.peopleAmount);
-    thisBooking.dom.hoursAmount = thisBooking.element.querySelector(select.booking.hoursAmount);
+    thisBooking.dom.wrapper.peopleAmount = document.querySelector(select.booking.peopleAmount);
+    thisBooking.dom.wrapper.hoursAmount = document.querySelector(select.booking.hoursAmount);
     
   }
 
@@ -32,7 +31,7 @@ export class Booking{
     
     const thisBooking = this;
 
-    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
-    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.wrapper.peopleAmount);
+    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.wrapper.hoursAmount);
   }
 }
