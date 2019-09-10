@@ -11,14 +11,14 @@ export class Booking{
     thisBooking.initWidgets();
   }
 
-  render(){
+  render(widget){
     const thisBooking = this; 
     
     const generatedHTML = templates.bookingWidget();
     const generatedDOM  = utils.createDOMFromHTML(generatedHTML);
 
     thisBooking.dom = {};
-    thisBooking.dom.wrapper = document.querySelector(select.containerOf.booking);
+    thisBooking.dom.wrapper = widget;
 
     thisBooking.dom.wrapper.appendChild(generatedDOM);
 
