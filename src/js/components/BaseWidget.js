@@ -37,7 +37,7 @@ export class BaseWidget{
 
   renderValue(){
     const thisWidget = this;
-    //console.log(thisWidget.value);
+    console.log(thisWidget.value);
   }
 
   announce(){

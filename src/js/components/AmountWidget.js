@@ -33,14 +33,14 @@ export class AmountWidget extends BaseWidget{
       thisWidget.value = thisWidget.dom.input.value;
     });
 
-    thisWidget.dom.linkDecrease.addEventListener('click', function(event){
+    thisWidget.dom.linkDecrease.addEventListener('click', function(){
       event.preventDefault();
-      thisWidget.value = thisWidget.dom.input.value - 1;
+      thisWidget.value = --thisWidget.dom.input.value;
     });
 
-    thisWidget.dom.linkIncrease.addEventListener('click', function(event){
+    thisWidget.dom.linkIncrease.addEventListener('click', function(){
       event.preventDefault();
-      thisWidget.value = thisWidget.dom.input.value + 1;
+      thisWidget.value = ++thisWidget.dom.input.value;
     });      
   }
   
