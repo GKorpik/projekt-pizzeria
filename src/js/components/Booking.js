@@ -118,13 +118,13 @@ export class Booking{
     for(let i=hour; i < hour + duration; i += 0.5){
       
       thisBooking.booked[date][i] = [table];
-      console.log('thisBooking.booked',thisBooking.booked);
 
-      if(!thisBooking.booked[date][i][table]){
-        thisBooking.booked.push([date] = {
-          [i]: [table]
-        });
+      if(!thisBooking.booked[date][i]){
+        thisBooking.booked[date][i] = [table];
+      } else {
+        thisBooking.booked[date][i].push(table);
       }
+    console.log('thisBooking.booked',thisBooking.booked);
     }
   }
 }
