@@ -7,9 +7,10 @@ import{utils} from '../utils.js';
 export class Booking{
   constructor(widget){
     const thisBooking = this;
-    
+    console.log('booking.started');
     thisBooking.render(widget);
     thisBooking.initWidgets();
+    thisBooking.getData();
   }
 
   render(widget){
@@ -91,25 +92,41 @@ export class Booking{
 
     for(let event of eventsCurrent) {
       
-      console.log('event', event);
+      console.log('eventsCurrent', event);
       let hourNumber = utils.hourToNumber(event.hour);
       thisBooking.makeBooked(event.date, hourNumber, event.duration, event.table);
     }  
+    
+    for(let event of eventsRepeat) {
+      
+      console.log('eventsRepeat', event);
+      let hourNumber = utils.hourToNumber(event.hour);
+      thisBooking.makeBooked(event.date, hourNumber, event.duration, event.table);
+    }      
+
   }
 
   makeBooked(date, hour, duration, table){
     const thisBooking = this;
-    console.log(date, hour, duration, table)
+    console.log(date, hour, duration, table);
 
+    if(thisBooking.booked.hasOwnProperty(date) == false){
+      thisBooking.booked[date] = {};
+    }
+      
 
     for(let i=hour; i < hour + duration; i += 0.5){
-      thisBooking.booked = {
-        date: {
-          hour: table
-        }
-      };
-    console.log('thisBooking.booked',thisBooking.booked)
+      
+      thisBooking.booked[date][i] = [table];
+      console.log('thisBooking.booked',thisBooking.booked);
+
+      if(!thisBooking.booked[date][i][table]){
+        thisBooking.booked.push([date] = {
+          [i]: [table]
+        });
+      }
     }
-    
   }
 }
+
+

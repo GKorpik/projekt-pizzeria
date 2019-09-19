@@ -236,7 +236,7 @@
     },
     {
       "id": 4,
-      "date": "2019-01-01",
+      "date": "2019-09-19",
       "hour": "13:00",
       "table": 2,
       "repeat": "daily",
@@ -246,7 +246,7 @@
     },
     {
       "id": 5,
-      "date": "2019-01-01",
+      "date": "2019-09-20",
       "hour": "18:00",
       "table": 2,
       "repeat": "daily",
@@ -255,5 +255,15 @@
       "starters": ["lemonWater"]
     }
   ],
-  "booking": []
+  "booking":    
+    {
+      "id": 4,
+      "date": "2019-09-19",
+      "hour": "13:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
+    },
 }
