@@ -206,7 +206,7 @@
   "event": [
     {
       "id": 1,
-      "date": "2019-09-17",
+      "date": "2019-09-21",
       "hour": "12:30",
       "table": 1,
       "repeat": false,
@@ -216,7 +216,7 @@
     },
     {
       "id": 2,
-      "date": "2019-09-18",
+      "date": "2019-09-19",
       "hour": "16:00",
       "table": 3,
       "repeat": "daily",
@@ -237,7 +237,7 @@
     {
       "id": 4,
       "date": "2019-09-19",
-      "hour": "13:00",
+      "hour": "12:00",
       "table": 2,
       "repeat": "daily",
       "duration": 4,
