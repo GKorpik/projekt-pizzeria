@@ -102,7 +102,14 @@ export class Booking{
       console.log('eventsRepeat', event);
       let hourNumber = utils.hourToNumber(event.hour);
       thisBooking.makeBooked(event.date, hourNumber, event.duration, event.table);
-    }      
+    }
+
+    for(let event of bookings) {
+      
+      console.log('bookings', event);
+      let hourNumber = utils.hourToNumber(event.hour);
+      thisBooking.makeBooked(event.date, hourNumber, event.duration, event.table);
+    }       
 
   }
 
@@ -117,14 +124,12 @@ export class Booking{
 
     for(let i=hour; i < hour + duration; i += 0.5){
       
-      thisBooking.booked[date][i] = [table];
-
       if(!thisBooking.booked[date][i]){
         thisBooking.booked[date][i] = [table];
       } else {
         thisBooking.booked[date][i].push(table);
       }
-    console.log('thisBooking.booked',thisBooking.booked);
+      console.log('thisBooking.booked',thisBooking.booked);
     }
   }
 }
