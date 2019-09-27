@@ -11,7 +11,7 @@ export class Booking{
     thisBooking.render(widget);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.updateDom();
+
   }
 
   render(widget){
@@ -141,18 +141,18 @@ export class Booking{
     }
   }
 
-  updateDom(){
+  updateDOM(){
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
   
     for (let table of thisBooking.tables){
-      let numberTable = thisBooking.dom.wrapper.querySelectorAll(select.booking.tableIdAttribute);
+      let numberTable = tabel.getAttribute(select.booking.tableIdAttribute);
     
-      if(thisBooking.booked[thisBooking.date] &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour] &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].hasOwnProperty(numberTable) == true)
+      if(typeof thisBooking.booked[thisBooking.date] == 'undefined' &&
+        typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined' &&
+        thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(numberTable) > -1)
       {
         table.classList.add(classNames.booking.tableBooked);
       } else {
