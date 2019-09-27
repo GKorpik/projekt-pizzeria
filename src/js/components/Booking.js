@@ -148,11 +148,11 @@ export class Booking{
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
   
     for (let table of thisBooking.tables){
-      let numberTable = tabel.getAttribute(select.booking.tableIdAttribute);
+      let numberTable = table.getAttribute(select.booking.tableIdAttribute);
     
       if(typeof thisBooking.booked[thisBooking.date] == 'undefined' &&
         typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined' &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(numberTable) > -1)
+        thisBooking.booked[thisBooking.date][thisBooking.hour].hasOwnProperty(numberTable))
       {
         table.classList.add(classNames.booking.tableBooked);
       } else {
