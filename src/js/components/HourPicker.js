@@ -32,6 +32,8 @@ export class HourPicker extends BaseWidget{
     
     const thisWidget = this;
     thisWidget.hours = utils.numberToHour(value);
+
+    return(thisWidget.hours);
   }
   
   isValid(){

@@ -145,13 +145,13 @@ export class Booking{
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.hours);
   
-    for (let table of thisBooking.tables){
-      let numberTable = table.getAttribute(select.booking.tableIdAttribute);
+    for (let table of thisBooking.dom.tables){
+      let numberTable = table.getAttribute(settings.booking.tableIdAttribute);
     
-      if(typeof thisBooking.booked[thisBooking.date] == 'undefined' &&
-        typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined' &&
+      if(typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
+        typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined' ||
         thisBooking.booked[thisBooking.date][thisBooking.hour].hasOwnProperty(numberTable))
       {
         table.classList.add(classNames.booking.tableBooked);
